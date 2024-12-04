@@ -2,14 +2,21 @@ package postgres
 
 import (
 	"fmt"
+	driver "gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"project/global"
+	"project/models"
 )
 
 const port = 5432
 
+// const api = ""
+// const usr = ""
+// const pwd = ""
+
 var DB *gorm.DB
 
+// todo
 func init() {
 	var err error
 
@@ -30,12 +37,9 @@ func init() {
 
 	// 迁移模型
 	err = DB.AutoMigrate(
-		&models.ProChange{}, // 变化
-		&models.Machine{},   // 账户
-		&models.Code{},      // 激活码
-		&models.Operator{},  // 管理员
-		&models.Order{},     // 订单
-		&models.Gift{},      // 全体赠送
+		&models.Account{}, // 账户
+		//&models.Operator{}, // 管理员
+		&models.Order{}, // 订单
 	)
 
 	// 创建管理员账号

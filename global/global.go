@@ -4,6 +4,8 @@ import (
 	"time"
 )
 
+// todo
+
 const DEBUG = false
 
 const API = "0.0.0.0:5002"
@@ -35,13 +37,13 @@ const ChargeModeRate = 7
 const ChargeFeeSecond = time.Minute * 171
 
 // PostgresAPI 数据库
-const PostgresAPI = "47.94.225.169"
-const PostgresUsr = "ydx"
-const PostgresPwd = "yangdongxu"
+const PostgresAPI = ""
+const PostgresUsr = ""
+const PostgresPwd = ""
 
 // const PostgresDB = "base"
 // const PostgresDB = "hcnbg6288@outlook.com"
-const PostgresDB = "2292871544@qq.com"
+const PostgresDB = ""
 
 func init() {
 	if DEBUG {
