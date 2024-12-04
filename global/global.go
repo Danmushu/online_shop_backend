@@ -12,10 +12,9 @@ const API = "0.0.0.0:5002"
 
 //const API = "0.0.0.0:80"
 
-const HookURL = "https://albion.scoreflow.cn/api/hook"
-const LogDirPath = "./log"
+const HookURL = ""
+const LogDirPath = ""
 
-// const ProSalt = "w1t4f3z1304c381a" // 不要修改
 const ProSalt = "w2t3f4d1304c381a"
 const JWTSalt = "That1is9a7secret"
 
@@ -41,8 +40,6 @@ const PostgresAPI = ""
 const PostgresUsr = ""
 const PostgresPwd = ""
 
-// const PostgresDB = "base"
-// const PostgresDB = "hcnbg6288@outlook.com"
 const PostgresDB = ""
 
 func init() {
