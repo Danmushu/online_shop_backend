@@ -33,11 +33,11 @@ const ChargeModeRate = 7                  //指定计费模式的比率
 const ChargeFeeSecond = time.Minute * 171 //指定计费周期
 
 // Postgres 数据库
-const PostgresIP = "101.42.105.235"
-const PostgresUsr = "admin"
-const PostgresPwd = "3mEP5dmnZeP442Pi"
+const PostgresIP = ""
+const PostgresUsr = ""
+const PostgresPwd = ""
 
-const PostgresDB = "online_shop"
+const PostgresDB = ""
 
 func init() {
 	if DEBUG {
