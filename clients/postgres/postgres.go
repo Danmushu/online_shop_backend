@@ -10,10 +10,6 @@ import (
 
 const port = 5432
 
-// const api = ""
-// const usr = ""
-// const pwd = ""
-
 var DB *gorm.DB
 
 // todo
@@ -22,7 +18,7 @@ func init() {
 
 	// 链接 postgresql
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable",
-		global.PostgresAPI, global.PostgresUsr, global.PostgresPwd,
+		global.PostgresIP, global.PostgresUsr, global.PostgresPwd,
 		global.PostgresDB, port)
 	DB, err = gorm.Open(driver.Open(dsn), &gorm.Config{
 		DisableForeignKeyConstraintWhenMigrating: true,
@@ -31,25 +27,19 @@ func init() {
 
 	if err != nil {
 		// 出错
+		fmt.Println("数据库连接失败")
 		fmt.Println(err)
 		return
 	}
 
-	// 迁移模型
+	//迁移模型
 	err = DB.AutoMigrate(
-		&models.Account{}, // 账户
+		&models.User{}, // 账户
 		//&models.Operator{}, // 管理员
-		&models.Order{}, // 订单
+		&models.Cart{},     //购物车
+		&models.Product{},  //商品
+		&models.Category{}, //商品类别
+		&models.Order{},    // 订单
 	)
-
-	// 创建管理员账号
-	for i := 0; i < len(global.OperatorList); i++ {
-		operator := global.OperatorList[i]
-		DB.Model(&models.Operator{}).
-			Where("id = ?", operator.ID).
-			Updates(operator)
-
-		DB.FirstOrCreate(operator)
-	}
 
 }

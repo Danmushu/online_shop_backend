@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"github.com/gin-gonic/gin"
+	"project/global"
+)
 
 func main() {
-	fmt.Println("hello")
+
+	server := gin.Default()
+
+	err := server.Run(global.API)
+	if err != nil {
+		return
+	}
 }
