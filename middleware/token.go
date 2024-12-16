@@ -1,10 +1,13 @@
 package middleware
 
 import (
+	"errors"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"os"
+	"project/clients/postgres"
+	"project/models"
 	"strconv"
 	"strings"
 	"time"
@@ -62,4 +65,30 @@ func ExtractTokenID(c *gin.Context) (uint, error) {
 		return uint(uid), nil
 	}
 	return 0, nil
+}
+
+func GetUserByToken(token string) error {
+	var user models.User
+	if err := postgres.DB.First(&user, "token = ?", token).Error; err != nil {
+		return errors.New("Token Expired")
+	}
+	return nil
+}
+
+func TokenValid(c *gin.Context) error {
+	tokenString := ExtractToken(c)
+	erro := GetUserByToken(tokenString)
+	if erro != nil {
+		return erro
+	}
+	_, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+		}
+		return []byte(os.Getenv("API_SECRET")), nil
+	})
+	if err != nil {
+		return err
+	}
+	return nil
 }

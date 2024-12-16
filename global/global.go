@@ -32,12 +32,12 @@ const OrderDuration = time.Minute * 5    // 订单的有效持续时间或订单
 const ChargeModeRate = 7                  //指定计费模式的比率
 const ChargeFeeSecond = time.Minute * 171 //指定计费周期
 
-// Postgres 数据库
-const PostgresIP = ""
-const PostgresUsr = ""
-const PostgresPwd = ""
-
-const PostgresDB = ""
+//// Postgres 数据库
+//const PostgresIP = ""
+//const PostgresUsr = ""
+//const PostgresPwd = ""
+//
+//const PostgresDB = ""
 
 func init() {
 	if DEBUG {
