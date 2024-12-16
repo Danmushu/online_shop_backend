@@ -34,8 +34,7 @@ func init() {
 
 	//迁移模型
 	err = DB.AutoMigrate(
-		&models.User{}, // 账户
-		//&models.Operator{}, // 管理员
+		&models.User{},     // 账户
 		&models.Cart{},     //购物车
 		&models.Product{},  //商品
 		&models.Category{}, //商品类别
