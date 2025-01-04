@@ -1,0 +1,44 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /api/auth/register        --> project/controllers.RegisterUser (3 handlers)
+[GIN-debug] POST   /api/auth/                --> project/controllers.LoginUser (3 handlers)
+[GIN-debug] POST   /api/auth/logout          --> project/controllers.LogoutUser (3 handlers)
+[GIN-debug] GET    /api/auth/                --> project/controllers.CurrentUser (3 handlers)
+[GIN-debug] GET    /api/user/detail          --> project/controllers.GetUserById (4 handlers)
+[GIN-debug] GET    /api/user/:id             --> project/controllers.GetUserById (4 handlers)
+[GIN-debug] PUT    /api/user/:id             --> project/controllers.UpdateUser (4 handlers)
+[GIN-debug] DELETE /api/user/:id             --> project/controllers.DeleteUser (4 handlers)
+[GIN-debug] POST   /api/payment/             --> project/controllers.CreatePayment (4 handlers)
+[GIN-debug] GET    /api/payment/             --> project/controllers.GetAllPayment (4 handlers)
+[GIN-debug] GET    /api/payment/:id          --> project/controllers.GetPaymentById (4 handlers)
+[GIN-debug] PUT    /api/payment/:id          --> project/controllers.UpdatePayment (4 handlers)
+[GIN-debug] DELETE /api/payment/:id          --> project/controllers.DeletePayment (4 handlers)
+[GIN-debug] POST   /api/cart/                --> project/controllers.CreateCart (4 handlers)
+[GIN-debug] GET    /api/cart/                --> project/controllers.GetAllCart (4 handlers)
+[GIN-debug] GET    /api/cart/:id             --> project/controllers.GetCartById (4 handlers)
+[GIN-debug] PUT    /api/cart/:id             --> project/controllers.UpdateCart (4 handlers)
+[GIN-debug] DELETE /api/cart/:id             --> project/controllers.DeleteCart (4 handlers)
+[GIN-debug] POST   /api/transaction/         --> project/controllers.CreateTransaction (4 handlers)
+[GIN-debug] GET    /api/transaction/         --> project/controllers.GetAllTransaction (4 handlers)
+[GIN-debug] GET    /api/transaction/:id      --> project/controllers.GetTransactionById (4 handlers)
+[GIN-debug] PUT    /api/transaction/:id      --> project/controllers.UpdateTransaction (4 handlers)
+[GIN-debug] DELETE /api/transaction/:id      --> project/controllers.DeleteTransaction (4 handlers)
+[GIN-debug] POST   /api/product/             --> project/controllers.CreateProduct (4 handlers)
+[GIN-debug] GET    /api/product/             --> project/controllers.GetAllProduct (4 handlers)
+[GIN-debug] GET    /api/product/:id          --> project/controllers.GetProductById (4 handlers)
+[GIN-debug] PUT    /api/product/:id          --> project/controllers.UpdateProduct (4 handlers)
+[GIN-debug] DELETE /api/product/:id          --> project/controllers.DeleteProduct (4 handlers)
+[GIN-debug] POST   /api/category/            --> project/controllers.CreateCategory (4 handlers)
+[GIN-debug] GET    /api/category/            --> project/controllers.GetAllCategory (4 handlers)
+[GIN-debug] GET    /api/category/:id         --> project/controllers.GetCategoryById (4 handlers)
+[GIN-debug] PUT    /api/category/:id         --> project/controllers.UpdateCategory (4 handlers)
+[GIN-debug] DELETE /api/category/:id         --> project/controllers.DeleteCategory (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on localhost:5002
+[GIN] 2024/12/28 - 15:43:34 | 200 |    168.0414ms |       127.0.0.1 | POST     "/api/auth/register"
+[GIN] 2024/12/28 - 15:44:06 | 400 |    138.2413ms |       127.0.0.1 | POST     "/api/auth/register"
