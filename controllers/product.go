@@ -2,10 +2,12 @@ package controllers
 
 import (
 	"fmt"
+	"github.com/spf13/cast"
 	"net/http"
 	"project/clients/postgres"
 	"project/middleware"
 	"project/models"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -55,45 +57,77 @@ func CreateProduct(c *gin.Context) {
 	})
 }
 
-func GetAllProduct(c *gin.Context) {
-	var product []models.Product
-	var category models.Category
+func ProductGet(c *gin.Context) {
+
 	// todo 日志记录
 
 	categoryQuery := c.Query("category")
-	if categoryQuery != "" {
-		fmt.Println(categoryQuery)
-		postgres.DB.Where("name = ?", categoryQuery).Or("code = ?", categoryQuery).First(&category)
-		postgres.DB.Where("category_code = ?", category.Code).Find(&product)
-		fmt.Println(category.Code)
-	} else {
-		postgres.DB.Find(&product)
-	}
-
-	c.JSON(http.StatusOK, Response{
-		Status:  "success",
-		Message: "success",
-		Data:    product,
-	})
-}
-
-func GetProductById(c *gin.Context) {
-	var product models.Product
-	// todo 日志记录
-
-	id := c.Param("id")
-	if err := postgres.DB.First(&product, id).Error; err != nil {
-		c.JSON(http.StatusNotFound, Response{
-			Status:  "Not Found",
-			Message: "product id " + id + " not found",
-			Data:    NullResponse{},
+	keyQuery := c.Query("key")
+	limit := cast.ToInt(c.Query("limit"))
+	offset := cast.ToInt(c.Query("offset"))
+	orderBy := c.Query("orderBy")
+	id := cast.ToInt(c.Param("id"))
+	ids := cast.ToIntSlice(strings.Split(c.Query("ids"), ","))
+	// 单个查询
+	if id != 0 {
+		product := models.Product{}
+		postgres.DB.Where("id = ?", id).Limit(1).Find(&product)
+		c.JSON(http.StatusOK, Response{
+			Status:  "success",
+			Message: "success",
+			Data:    product,
 		})
 		return
 	}
+
+	// 多个ids查询
+	if len(ids) != 0 {
+		var products []models.Product
+		postgres.DB.Where("id in ?", ids).Find(&products)
+		c.JSON(http.StatusOK, Response{
+			Status:  "success",
+			Message: "success",
+			Data:    products,
+		})
+		return
+	}
+
+	// 多个检索
+	var products []models.Product
+	if limit < 0 || limit > 30 {
+		limit = 30
+	}
+	if offset < 0 {
+		offset = 0
+	}
+	query := postgres.DB.
+		Model(models.Product{})
+
+	// 如果有类别
+	if categoryQuery != "" {
+		query.Where("category_code = ?", categoryQuery)
+	}
+
+	// 如果有关键字
+	if keyQuery != "" {
+		query.Where("name like ? OR description like ?", "%"+keyQuery+"%", "%"+keyQuery+"%")
+	}
+
+	// 排序方法
+	if orderBy == "price" || orderBy == "created_at" {
+		query.Order(fmt.Sprintf("%s desc", orderBy))
+	} else {
+		// 默认 排序
+		query.Order("created_at desc")
+	}
+
+	query.Limit(limit).Offset(offset).
+		Find(&products)
+
 	c.JSON(http.StatusOK, Response{
 		Status:  "success",
 		Message: "success",
-		Data:    product,
+		Data:    products,
 	})
 }
 

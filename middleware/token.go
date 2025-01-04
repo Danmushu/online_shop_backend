@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"os"
 	"project/clients/postgres"
+	"project/global"
 	"project/models"
 	"strconv"
 	"strings"
@@ -16,19 +17,16 @@ import (
 // todo
 
 func GenerateToken(userID int) (string, error) {
-	tokenLifespan, err := strconv.Atoi(os.Getenv("TOKEN_HOUR_LIFESPAN"))
-
-	if err != nil {
-		return "", err
-	}
 
 	claims := jwt.MapClaims{}
 	claims["authorized"] = true
 	claims["user_id"] = userID
-	claims["exp"] = time.Now().Add(time.Hour * time.Duration(tokenLifespan)).Unix()
+	claims["exp"] = time.Now().Add(global.JWTDuration).Unix()
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	return token.SignedString([]byte(os.Getenv("API_SECRET")))
+	fmt.Println(token)
+	fmt.Println(123123123)
+	return token.SignedString([]byte(global.JWTSecret))
 }
 
 func ExtractToken(c *gin.Context) string {
@@ -70,7 +68,7 @@ func ExtractTokenID(c *gin.Context) (uint, error) {
 func GetUserByToken(token string) error {
 	var user models.User
 	if err := postgres.DB.First(&user, "token = ?", token).Error; err != nil {
-		return errors.New("Token Expired")
+		return errors.New("token Expired")
 	}
 	return nil
 }

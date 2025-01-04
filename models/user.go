@@ -15,11 +15,11 @@ import "time"
 //}
 
 type User struct {
-	Id        int       `gorm:"primary_key;type:bigint;autoIncrement;" json:"id"`
+	ID        int       `gorm:"primaryKey;type:bigint;autoIncrement;" json:"id"`
 	Name      string    `gorm:"size:255;not null;" json:"name"`
 	Pwd       string    `gorm:"size:255;not null;" json:"pwd"`
 	Email     string    `gorm:"size:255;not null;unique" json:"email"`
-	Token     string    `gorm:"unique" json:"token"`
-	CreatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"created_at"`
-	UpdateAt  time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
+	Token     string    `gorm:"" json:"token"`
+	CreatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"createdAt"`
+	UpdateAt  time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updatedAt"`
 }

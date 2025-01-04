@@ -1,0 +1,98 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /                         --> project/routers.SetWebsiteRouters.func1 (4 handlers)
+[GIN-debug] POST   /api/auth/register        --> project/controllers.RegisterUser (4 handlers)
+[GIN-debug] POST   /api/auth                 --> project/controllers.LoginUser (4 handlers)
+[GIN-debug] POST   /api/auth/logout          --> project/controllers.LogoutUser (4 handlers)
+[GIN-debug] GET    /api/auth                 --> project/controllers.CurrentUser (4 handlers)
+[GIN-debug] GET    /api/product              --> project/controllers.ProductGet (4 handlers)
+[GIN-debug] GET    /api/product/:id          --> project/controllers.ProductGet (4 handlers)
+[GIN-debug] POST   /api/order                --> project/middleware.Cors (3 handlers)
+[GIN-debug] GET    /api/order                --> project/middleware.Cors (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on localhost:5002
+[GIN] 2025/01/04 - 17:49:02 | 404 |            0s |       127.0.0.1 | POST     "/api/auth/login"
+[GIN] 2025/01/04 - 17:51:08 | 200 |    221.8031ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 17:53:33 | 200 |     54.6493ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 17:53:59 | 200 |     54.0116ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 17:55:26 | 200 |     39.3874ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 17:58:32 | 200 |     91.3104ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 17:59:37 | 200 |     46.2282ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 17:59:50 | 404 |            0s |       127.0.0.1 | POST     "/api/auth/login"
+[GIN] 2025/01/04 - 18:04:16 | 200 |     113.084ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 18:04:56 | 200 |    142.2776ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 18:06:31 | 200 |    111.1569ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 18:07:48 | 200 |     93.8203ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 18:09:34 | 200 |     83.6709ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 18:11:03 | 200 |     285.632ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 18:11:05 | 200 |    105.2678ms |       127.0.0.1 | GET      "/api/product?id=undefined&"
+[GIN] 2025/01/04 - 18:12:24 | 200 |     36.9845ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 18:12:26 | 200 |     49.0669ms |       127.0.0.1 | GET      "/api/product?id=undefined&"
+[GIN] 2025/01/04 - 18:13:37 | 200 |      46.756ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 18:13:38 | 200 |     53.2471ms |       127.0.0.1 | GET      "/api/product?id=undefined&"
+[GIN] 2025/01/04 - 18:14:21 | 200 |     42.0511ms |       127.0.0.1 | GET      "/api/product?id=undefined&"
+[GIN] 2025/01/04 - 18:14:34 | 200 |     47.8295ms |       127.0.0.1 | GET      "/api/product?id=undefined&"
+[GIN] 2025/01/04 - 18:15:54 | 200 |     62.0288ms |       127.0.0.1 | GET      "/api/product?id=undefined&"
+[GIN] 2025/01/04 - 18:16:00 | 200 |     59.8887ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 18:16:01 | 200 |      41.877ms |       127.0.0.1 | GET      "/api/product?id=undefined&"
+[GIN] 2025/01/04 - 18:16:18 | 200 |     62.1707ms |       127.0.0.1 | GET      "/api/product/2"
+[GIN] 2025/01/04 - 18:20:29 | 200 |     48.1549ms |       127.0.0.1 | GET      "/api/product/2"
+[GIN] 2025/01/04 - 18:21:14 | 200 |      45.422ms |       127.0.0.1 | GET      "/api/product/2"
+[GIN] 2025/01/04 - 18:21:31 | 200 |     40.6342ms |       127.0.0.1 | GET      "/api/product/2"
+[GIN] 2025/01/04 - 18:22:15 | 200 |      39.418ms |       127.0.0.1 | GET      "/api/product/2"
+[GIN] 2025/01/04 - 18:24:19 | 200 |     70.9517ms |       127.0.0.1 | GET      "/api/product/2"
+[GIN] 2025/01/04 - 18:25:22 | 200 |     38.5373ms |       127.0.0.1 | GET      "/api/product/2"
+[GIN] 2025/01/04 - 18:25:34 | 200 |      40.283ms |       127.0.0.1 | GET      "/api/product/2"
+[GIN] 2025/01/04 - 18:26:18 | 200 |     53.1404ms |       127.0.0.1 | GET      "/api/product/2"
+[GIN] 2025/01/04 - 18:26:29 | 200 |     72.2408ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"
+[GIN] 2025/01/04 - 18:26:31 | 200 |      43.957ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:30:51 | 200 |      41.668ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:31:41 | 200 |     36.5955ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:31:59 | 200 |     41.1553ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:32:06 | 200 |     44.8576ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:33:04 | 200 |     40.6426ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:33:11 | 200 |      42.978ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:33:16 | 200 |     53.6374ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:33:19 | 200 |     43.7102ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:34:41 | 200 |     37.0666ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:34:41 | 200 |     26.7358ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:34:46 | 200 |     54.4326ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:34:49 | 200 |     56.2788ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:39:43 | 200 |     39.5557ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:39:48 | 200 |     42.7425ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:40:00 | 200 |     39.6398ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:40:03 | 200 |     44.0248ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:40:14 | 200 |     46.7325ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:40:16 | 200 |     44.0652ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:41:25 | 200 |     54.9372ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:41:29 | 200 |     41.3424ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:42:05 | 200 |     63.9963ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:42:11 | 200 |     45.5607ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:43:12 | 200 |     47.1935ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:43:14 | 200 |     50.2353ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:43:55 | 200 |     45.4104ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:44:03 | 200 |     54.4847ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:44:11 | 200 |     44.6973ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:44:25 | 200 |     52.4701ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:44:27 | 200 |     42.3467ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:44:29 | 200 |     35.9568ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:44:33 | 200 |     35.7606ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:44:36 | 200 |     48.9768ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:44:38 | 200 |     42.3348ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:44:40 | 200 |      41.863ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:44:43 | 200 |     47.3736ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:44:52 | 200 |     39.9039ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:45:44 | 200 |     52.8859ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:46:15 | 200 |     43.7082ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:46:19 | 200 |     40.6424ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:49:51 | 200 |     39.1761ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:49:57 | 200 |     54.7945ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:50:01 | 200 |     40.8551ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:50:04 | 200 |     57.2932ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:50:07 | 200 |     51.0021ms |       127.0.0.1 | GET      "/api/product/4"
+[GIN] 2025/01/04 - 18:50:10 | 200 |     54.5566ms |       127.0.0.1 | GET      "/api/product/4"

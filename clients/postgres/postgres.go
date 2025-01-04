@@ -15,10 +15,19 @@ var DB *gorm.DB
 // todo
 func init() {
 	var err error
-
+	//var ip, pwd string
+	//fmt.Println("输入ip和密码")
+	//_, err = fmt.Scanln(&ip)
+	//if err != nil {
+	//	return
+	//}
+	//_, err = fmt.Scanln(&pwd)
+	//if err != nil {
+	//	return
+	//}
 	// 链接 postgresql
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable",
-		global.PostgresIP, global.PostgresUsr, global.PostgresPwd,
+		global.PostgresIP /*ip*/, global.PostgresUsr, global.PostgresPwd, /*pwd*/
 		global.PostgresDB, port)
 	DB, err = gorm.Open(driver.Open(dsn), &gorm.Config{
 		DisableForeignKeyConstraintWhenMigrating: true,
@@ -40,5 +49,9 @@ func init() {
 		&models.Category{}, //商品类别
 		&models.Order{},    // 订单
 	)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("数据库连接成功，模型迁移成功")
 
 }

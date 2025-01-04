@@ -7,7 +7,6 @@ import (
 
 var db *gorm.DB
 
-// todo
 func init() {
 	db = postgres.DB
 }

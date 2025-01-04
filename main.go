@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"project/global"
+	"project/middleware"
 	"project/routers"
 	"time"
 )
@@ -31,18 +32,11 @@ func main() {
 	gin.DefaultWriter = io.MultiWriter(log, os.Stdout)
 
 	server := gin.Default()
-
+	server.Use(middleware.Cors)
+	routers.SetWebsiteRouters(server)
 	/** API路由 **/
 	api := server.Group("/api")
 	routers.SetUserRouter(api)
-	//routers.AuthenticationRoutes(api.Group("/auth"))
-
-	//routers.UserRoutes(api.Group("/user"))
-	//routers.CategoryRoutes(api.Group("/category"))
-	//routers.PaymentRoutes(api.Group("/payment"))
-	//routers.ProductRoutes(api.Group("/product"))
-	//routers.CartRoutes(api.Group("/cart"))
-	//routers.TransactionRoutes(api.Group("/transaction"))
 
 	err = server.Run(global.API)
 	if err != nil {

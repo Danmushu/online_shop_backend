@@ -1,0 +1,19 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /                         --> project/routers.SetWebsiteRouters.func1 (4 handlers)
+[GIN-debug] POST   /api/auth/register        --> project/controllers.RegisterUser (4 handlers)
+[GIN-debug] POST   /api/auth                 --> project/controllers.LoginUser (4 handlers)
+[GIN-debug] POST   /api/auth/logout          --> project/controllers.LogoutUser (4 handlers)
+[GIN-debug] GET    /api/auth                 --> project/controllers.CurrentUser (4 handlers)
+[GIN-debug] GET    /api/product              --> project/controllers.ProductGet (5 handlers)
+[GIN-debug] GET    /api/product/:id          --> project/controllers.ProductGet (5 handlers)
+[GIN-debug] POST   /api/order                --> project/routers.SetUserRouter.JwtAuth.func1 (4 handlers)
+[GIN-debug] GET    /api/order                --> project/routers.SetUserRouter.JwtAuth.func1 (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on localhost:5002
+[GIN] 2025/01/04 - 17:16:11 | 401 |     61.7979ms |       127.0.0.1 | GET      "/api/product?limit=5&offset=0&"

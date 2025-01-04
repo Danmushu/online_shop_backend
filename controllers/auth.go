@@ -14,7 +14,7 @@ import (
 
 type UserCreate struct {
 	Name  string `json:"username" binding:"required"`
-	Pwd   string `json:"password" binding:"required"`
+	Pwd   string `json:"pwd" binding:"required"`
 	Email string `json:"email" binding:"required"`
 }
 
@@ -27,11 +27,11 @@ func RegisterUser(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	//todo encrypt passwd
 
+	pwd, _ := bcrypt.GenerateFromPassword([]byte(data.Pwd), bcrypt.DefaultCost)
 	user := models.User{}
 	user.Name = data.Name
-	user.Pwd = data.Pwd
+	user.Pwd = string(pwd)
 	user.Email = data.Email
 	user.UpdateAt = time.Now()
 
@@ -63,48 +63,38 @@ func LoginUser(c *gin.Context) {
 		return
 	}
 
-	user := models.User{}
+	user := &models.User{}
 	user.Name = data.Username
 	user.Pwd = data.Password
 
 	// todo 登录检查
 	var token string
-	token, err = LoginCheck(user.Name, user.Pwd)
+	user, token, err = LoginCheck(user)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "username or password isincorrect!",
+			"message": "username or password is incorrect!",
 		})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": token})
+	c.JSON(http.StatusOK, gin.H{"token": token, "data": user})
 }
 
-func LoginCheck(username, pwd string) (string, error) {
-	var err error
+func LoginCheck(user *models.User) (*models.User, string, error) {
 
-	user := models.User{}
+	pwd := user.Pwd
 
-	err = postgres.DB.Model(models.User{}).Where("username = ?", username).Take(&user).Error
-
-	if err != nil {
-		return "", err
+	// 存在 判断
+	if postgres.DB.Model(models.User{}).Where("name = ?", user.Name).Limit(1).Find(user).RowsAffected == 0 ||
+		VerifyPassword(pwd, user.Pwd) != nil {
+		return nil, "", errors.New("username or password is incorrect")
 	}
 
-	err = VerifyPassword(pwd, user.Pwd)
+	token, _ := middleware.GenerateToken(user.ID)
 
-	if err != nil && errors.Is(err, bcrypt.ErrMismatchedHashAndPassword) {
-		return "", err
-	}
-
-	token, err := middleware.GenerateToken(user.Id)
-	SaveToken(user.Id, token)
-
-	if err != nil {
-		return "", err
-	}
-	return token, nil
+	SaveToken(user.ID, token)
+	return user, token, nil
 }
 
 func SaveToken(id int, token string) {

@@ -18,12 +18,8 @@ type UserResponse struct {
 
 // CreateUser todo
 func CreateUser(user *models.User) (*models.User, error) {
-	var err error
-	err = postgres.DB.Create(user).Error
-	if err != nil {
-		return &models.User{}, err
-	}
-	return user, nil
+	err := postgres.DB.Create(user).Error
+	return user, err
 }
 
 func GetUserById(c *gin.Context) {
